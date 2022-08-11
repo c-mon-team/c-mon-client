@@ -109,6 +109,11 @@ module.exports = () => ({
       chunks: 'all',
     },
   },
+  performance: {
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+    hints: false,
+  },
   devServer: {
     port: 3000,
     open: true,

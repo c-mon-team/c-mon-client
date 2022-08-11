@@ -3,15 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "engines": {
-    "node": "v16.16.0",
-    "yarn": "1.22.19"
-  },
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack serve --mode=development --progress",
-    "build:dev": "yarn build -- --env.mode=development",
-    "build:prod": "yarn build -- --env.mode=production"
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "cross-env NODE_ENV=development webpack serve --progress"
   },
   "keywords": [],
   "repository": {
@@ -30,6 +24,7 @@
     "@typescript-eslint/parser": "^5.27.1",
     "babel-loader": "^8.2.5",
     "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "esbuild-loader": "^2.19.0",
     "eslint": "^8.17.0",
