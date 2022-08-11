@@ -1,0 +1,4 @@
+.eslintrc*
+webpack.config.js
+node_modules
+tailwind.config.js
