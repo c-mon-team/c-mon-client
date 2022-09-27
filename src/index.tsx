@@ -1,3 +1,6 @@
+import './styles/style.css';
+
+import Layout from 'components/common/Layout';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
@@ -16,7 +19,9 @@ root.render(
     <RecoilRoot>
       <ThemeProvider theme={colors}>
         <GlobalStyle />
-        <App />
+        <Layout>
+          <App />
+        </Layout>
       </ThemeProvider>
     </RecoilRoot>
   </React.StrictMode>,
