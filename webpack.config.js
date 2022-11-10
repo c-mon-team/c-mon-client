@@ -118,12 +118,12 @@ module.exports = () => ({
     port: 3000,
     open: true,
     hot: true,
-    proxy: {
-      '/api': {
-        target: 'server-api.com',
-        changeOrigin: true,
-      },
-    },
+    // proxy: {
+    //   '/api': {
+    //     target: 'server-api.com',
+    //     changeOrigin: true,
+    //   },
+    // },
     liveReload: true,
     historyApiFallback: true,
   },
