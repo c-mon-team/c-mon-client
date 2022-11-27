@@ -9,10 +9,11 @@ import RetryToggle from './RetryToggle';
 interface HeaderProps {
   filteredMemberCount: number;
   memberCount: number;
+  handleFilterToggle: () => void;
 }
 
 function Header(props: HeaderProps) {
-  const { filteredMemberCount, memberCount } = props;
+  const { filteredMemberCount, memberCount, handleFilterToggle } = props;
 
   const navigate = useNavigate();
 
@@ -30,7 +31,10 @@ function Header(props: HeaderProps) {
           <img className="mr-7" src="/assets/icons/ic_arrow_left.svg" alt="arrow_left" />
           다시하기
         </button>
-        <button className="flex justify-center items-center gap-6 text-body2 text-gray10">
+        <button
+          className="flex justify-center items-center gap-6 text-body2 text-gray10"
+          onClick={handleFilterToggle}
+        >
           <img src="/assets/icons/ic_user_two_mono.svg" alt="user" />
           참가 멤버
           {filteredMemberCount !== memberCount && (
@@ -45,7 +49,7 @@ function Header(props: HeaderProps) {
           onConfirm={async () => {
             setRetryToggle(false);
             await deleteMyTest(user.id);
-            navigate('/');
+            navigate('/', { replace: true });
           }}
         />
       )}

@@ -1,3 +1,4 @@
+import Filter from 'components/result/Filter';
 import Header from 'components/result/Header';
 import Invite from 'components/result/Invite';
 import OtherLinks from 'components/result/OtherLinks';
@@ -5,49 +6,99 @@ import Reload from 'components/result/Reload';
 import ResultDetail from 'components/result/ResultDetail';
 import ResultGraph from 'components/result/ResultGraph';
 import ResultRank from 'components/result/ResultRank';
-import React, { useState } from 'react';
+import resultDummy from 'data/resultDummy';
+import { getGroup, getResult } from 'libs/result';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Result() {
-  const groupName = '아우쓱 6기';
-  const resultDesc = '떠나요, 다함께~ 제주도 푸른 밤!\n다음 약속은 여행이야';
-  const resultList = [
-    {
-      id: 1,
-      name: '여행',
-      memberList: ['배지안', '석상언', '김수민', '조정한', '권소희권소희'],
-    },
-    {
-      id: 2,
-      name: '영화드라마',
-      memberList: ['배지안', '석상언', '김수민'],
-    },
-    {
-      id: 3,
-      name: '반려동물',
-      memberList: ['배지안', '석상언'],
-    },
-    {
-      id: 4,
-      name: '스포츠',
-      memberList: ['조정한'],
-    },
-  ]
-    .sort((a, b) => b.memberList.length - a.memberList.length)
-    .slice(0, 3);
-  const memberCount = 4;
+  const [search] = useSearchParams();
+  const code = search.get('code') || '';
 
-  const [filteredMemberCount, setFilteredMemberCount] = useState(4);
+  const [group, setGroup] = useState({
+    id: 1,
+    name: 'TEST',
+    memberCount: 3,
+    memberList: [
+      { id: 1, name: 'USER1' },
+      { id: 2, name: 'USER2' },
+      { id: 3, name: 'USER3' },
+      { id: 4, name: 'USER4' },
+      { id: 5, name: 'USER5' },
+    ],
+  });
+  const [resultList, setResultList] = useState(
+    resultDummy.sort((a, b) => b.memberList.length - a.memberList.length).slice(0, 3),
+  );
+  const [resultDesc, setResultDesc] = useState(
+    '떠나요, 다함께~ 제주도 푸른 밤!\n다음 약속은 여행이야',
+  );
+  const [filteredMemberList, setFilteredMemberList] = useState(group.memberList);
+  const [filterToggle, setFilterToggle] = useState(false);
+
+  const getData = async () => {
+    const group = await getGroup(code);
+    const result = await getResult(code, [0]);
+    const sortedResult =
+      result && result.sort((a, b) => b.memberList.length - a.memberList.length).slice(0, 3);
+
+    group &&
+      setGroup({
+        id: group.groupId,
+        name: group.groupName,
+        memberList: group.members,
+        memberCount: group.members.length,
+      });
+    group && setFilteredMemberList(group.members);
+    sortedResult &&
+      setResultList(
+        sortedResult.sort((a, b) => b.memberList.length - a.memberList.length).slice(0, 3),
+      );
+    sortedResult && setResultDesc(resultDesc[sortedResult[0].id - 1]);
+  };
+
+  useEffect(() => {
+    code && getData();
+  }, [code]);
+
+  const handleFilterToggle = () => {
+    setFilterToggle(!filterToggle);
+  };
+
+  const getFilteredData = async (id: number[]) => {
+    const result = await getResult(code, id);
+    const sortedResult =
+      result && result.sort((a, b) => b.memberList.length - a.memberList.length).slice(0, 3);
+
+    setFilteredMemberList(group.memberList.filter((member) => id.includes(member.id)));
+    sortedResult &&
+      setResultList(
+        sortedResult.sort((a, b) => b.memberList.length - a.memberList.length).slice(0, 3),
+      );
+    sortedResult && setResultDesc(resultDesc[sortedResult[0].id - 1]);
+  };
 
   return (
     <StyledRoot>
-      <Header filteredMemberCount={filteredMemberCount} memberCount={memberCount} />
-      <ResultRank groupName={groupName} resultDesc={resultDesc} resultList={resultList} />
-      <ResultGraph resultList={resultList} memberCount={memberCount} />
-      <ResultDetail />
+      <Header
+        filteredMemberCount={filteredMemberList.length}
+        memberCount={group.memberCount}
+        handleFilterToggle={handleFilterToggle}
+      />
+      <ResultRank groupName={group.name} resultDesc={resultDesc} resultList={resultList} />
+      <ResultGraph resultList={resultList} memberCount={group.memberCount} />
+      <ResultDetail handleFilterToggle={handleFilterToggle} />
       <Invite />
-      <Reload />
+      <Reload getData={() => code && getData()} />
       <OtherLinks />
+      {filterToggle && (
+        <Filter
+          handleFilterToggle={handleFilterToggle}
+          getFilteredData={getFilteredData}
+          filteredMemberList={filteredMemberList}
+        />
+      )}
     </StyledRoot>
   );
 }
