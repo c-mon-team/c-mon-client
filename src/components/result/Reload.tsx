@@ -8,7 +8,7 @@ function Reload(props: ReloadProps) {
   const { getData } = props;
 
   return (
-    <div className="py-25 px-57 bg-gray3 flex flex-col justify-center items-center">
+    <div className="p-25 bg-gray3 flex flex-col justify-center items-center">
       <button onClick={getData}>
         <img src="/assets/icons/ic_reload.svg" alt="reload" />
       </button>

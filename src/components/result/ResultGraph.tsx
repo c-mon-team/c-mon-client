@@ -7,10 +7,11 @@ import ResultGraphItem from './ResultGraphItem';
 interface ResultGraphProps {
   resultList: Result[];
   memberCount: number;
+  questionIndex: number[];
 }
 
 function ResultGraph(props: ResultGraphProps) {
-  const { resultList, memberCount } = props;
+  const { resultList, memberCount, questionIndex } = props;
 
   const [checked, setChecked] = useState(resultList[0].id);
 
@@ -37,6 +38,19 @@ function ResultGraph(props: ResultGraphProps) {
             onClickGraph={onClickGraph}
           />
         ))}
+        {resultList.length < 3 &&
+          questionIndex
+            .slice(0, 3 - resultList.length)
+            .map((question) => (
+              <ResultGraphItem
+                key={question}
+                id={question}
+                title={categoryItem[question - 1].title}
+                percent={0}
+                isChecked={false}
+                onClickGraph={onClickGraph}
+              />
+            ))}
       </div>
       <div className="w-20 h-1 bg-gray5 mt-38 mb-5 mx-auto" />
       <h4 className="text-body1 text-gray10 text-center">

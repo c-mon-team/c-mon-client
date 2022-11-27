@@ -77,6 +77,11 @@ function Result() {
     sortedResult && setResultDesc(resultDesc[sortedResult[0].id - 1]);
   };
 
+  const resultIndex = resultList.map((result) => result.id);
+  const questionIndex = Array.from({ length: 12 }, (_, i) => i + 1).filter(
+    (index) => !resultIndex.includes(index),
+  );
+
   return (
     <StyledRoot>
       <Header
@@ -84,8 +89,17 @@ function Result() {
         memberCount={group.memberCount}
         handleFilterToggle={handleFilterToggle}
       />
-      <ResultRank groupName={group.name} resultDesc={resultDesc} resultList={resultList} />
-      <ResultGraph resultList={resultList} memberCount={group.memberCount} />
+      <ResultRank
+        groupName={group.name}
+        resultDesc={resultDesc}
+        resultList={resultList}
+        questionIndex={questionIndex}
+      />
+      <ResultGraph
+        resultList={resultList}
+        memberCount={group.memberCount}
+        questionIndex={questionIndex}
+      />
       <ResultDetail handleFilterToggle={handleFilterToggle} />
       <Invite />
       <Reload getData={() => code && getData()} />

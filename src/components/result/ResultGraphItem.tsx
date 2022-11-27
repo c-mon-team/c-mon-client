@@ -18,12 +18,16 @@ function ResultGraphItem(props: ResultGraphItemProps) {
   const height = Math.round(140 * (percent / 100));
 
   return (
-    <StyledRoot height={height} onClick={() => onClickGraph(id)}>
-      <p
-        className={`${isChecked ? 'text-title5 text-blue' : 'text-body2 text-gray10'} text-center`}
-      >
-        {percent}%
-      </p>
+    <StyledRoot height={height || 2} onClick={() => percent > 0 && onClickGraph(id)}>
+      {percent > 0 && (
+        <p
+          className={`${
+            isChecked ? 'text-title5 text-blue' : 'text-body2 text-gray10'
+          } text-center`}
+        >
+          {percent}%
+        </p>
+      )}
       <div
         className={`${
           isChecked ? 'bg-blue' : 'bg-gray5'

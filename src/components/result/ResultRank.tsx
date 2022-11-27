@@ -7,10 +7,11 @@ interface ResultRankProps {
   groupName: string;
   resultDesc: string;
   resultList: Result[];
+  questionIndex: number[];
 }
 
 function ResultRank(props: ResultRankProps) {
-  const { groupName, resultDesc, resultList } = props;
+  const { groupName, resultDesc, resultList, questionIndex } = props;
 
   const size = resultList.map((result) => result.memberList.length);
 
@@ -25,24 +26,68 @@ function ResultRank(props: ResultRankProps) {
       </div>
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="flex justify-center items-end w-full h-full">
-          <ResultRankItem
-            rank={size[1] === size[0] ? 1 : 2}
-            isCenter={false}
-            isCommon={size[1] === size[0] || size[1] === size[2]}
-            index={resultList[1].id}
-          />
-          <ResultRankItem
-            rank={1}
-            isCenter
-            isCommon={size[0] === size[1]}
-            index={resultList[0].id}
-          />
-          <ResultRankItem
-            rank={size[2] === size[0] ? 1 : size[2] === size[1] ? 2 : 3}
-            isCenter={false}
-            isCommon={size[2] === size[0] || size[2] === size[1]}
-            index={resultList[2].id}
-          />
+          {size.length > 2 ? (
+            <>
+              <ResultRankItem
+                rank={size[1] === size[0] ? 1 : 2}
+                isCenter={false}
+                isCommon={size[1] === size[0] || size[1] === size[2]}
+                index={resultList[1].id}
+              />
+              <ResultRankItem
+                rank={1}
+                isCenter
+                isCommon={size[0] === size[1]}
+                index={resultList[0].id}
+              />
+              <ResultRankItem
+                rank={size[2] === size[0] ? 1 : size[2] === size[1] ? 2 : 3}
+                isCenter={false}
+                isCommon={size[2] === size[0] || size[2] === size[1]}
+                index={resultList[2].id}
+              />
+            </>
+          ) : size.length === 2 ? (
+            <>
+              <ResultRankItem
+                rank={size[1] === size[0] ? 1 : 2}
+                isCenter={false}
+                isCommon={size[1] === size[0]}
+                index={resultList[1].id}
+              />
+              <ResultRankItem
+                rank={1}
+                isCenter
+                isCommon={size[0] === size[1]}
+                index={resultList[0].id}
+              />
+              <ResultRankItem
+                rank={3}
+                isCenter={false}
+                isCommon={false}
+                index={0}
+                questionIndex={questionIndex[0]}
+              />
+            </>
+          ) : (
+            <>
+              <ResultRankItem
+                rank={2}
+                isCenter={false}
+                isCommon={false}
+                index={0}
+                questionIndex={questionIndex[0]}
+              />
+              <ResultRankItem rank={1} isCenter isCommon={false} index={resultList[0].id} />
+              <ResultRankItem
+                rank={2}
+                isCenter={false}
+                isCommon={false}
+                index={0}
+                questionIndex={questionIndex[1]}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
