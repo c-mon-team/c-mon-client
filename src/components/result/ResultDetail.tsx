@@ -28,7 +28,10 @@ function ResultDetail(props: ResultDetailProps) {
       </button>
       <p className="text-body1 text-gray10 text-center mb-20">친구들의 세부 관심사가 궁금하다면?</p>
       <button
-        onClick={() => navigate(`/result/detail${code ? `?code=${code}` : ''}`)}
+        onClick={() => {
+          navigate(`/result/detail${code ? `?code=${code}` : ''}`);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
         className="w-[100%] h-56 bg-blue text-title4 text-white rounded-20 flex justify-center items-center"
       >
         <img className="mr-8" src="/assets/icons/ic_result_detail.svg" alt="result_detail" />
