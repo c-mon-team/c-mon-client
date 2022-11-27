@@ -92,7 +92,7 @@ function Result() {
   );
 
   return (
-    <section className="pb-63">
+    <section>
       <Header
         filteredMemberCount={filteredMemberList.length}
         memberCount={group.memberCount}
