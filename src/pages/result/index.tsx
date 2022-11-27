@@ -24,8 +24,6 @@ function Result() {
       { id: 1, name: 'USER1' },
       { id: 2, name: 'USER2' },
       { id: 3, name: 'USER3' },
-      { id: 4, name: 'USER4' },
-      { id: 5, name: 'USER5' },
     ],
   });
   const [resultList, setResultList] = useState(

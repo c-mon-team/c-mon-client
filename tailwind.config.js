@@ -15,6 +15,13 @@ module.exports = {
       backgroundImage: {
         result: "url('public/assets/images/img_result_bg.svg')",
       },
+      flex: {
+        2: '2 2 auto',
+        3: '3 3 auto',
+        4: '4 4 auto',
+        5: '5 5 auto',
+        6: '6 6 auto',
+      },
       fontSize: {
         title2: ['20px', { lineHeight: '150%', fontWeight: '600', letterSpacing: '-1%' }],
         title1: ['24px', { lineHeight: '150%', fontWeight: '600', letterSpacing: '-1%' }],

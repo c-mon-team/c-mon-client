@@ -12,6 +12,8 @@ interface ResultRankProps {
 function ResultRank(props: ResultRankProps) {
   const { groupName, resultDesc, resultList } = props;
 
+  const size = resultList.map((result) => result.memberList.length);
+
   return (
     <div className="relative w-full h-0 pb-[144%]">
       <div className="absolute top-0 left-0 w-full h-full bg-result bg-no-repeat bg-cover">
@@ -22,10 +24,25 @@ function ResultRank(props: ResultRankProps) {
         <h4 className="text-title4 text-center text-gray10 whitespace-pre pt-45">{resultDesc}</h4>
       </div>
       <div className="absolute top-0 left-0 w-full h-full">
-        <div className="flex justify-center items-end w-full h-full gap-[12.8%] pb-[19.6%]">
-          <ResultRankItem rank={2} index={resultList[1].id} />
-          <ResultRankItem rank={1} index={resultList[0].id} />
-          <ResultRankItem rank={3} index={resultList[2].id} />
+        <div className="flex justify-center items-end w-full h-full">
+          <ResultRankItem
+            rank={size[1] === size[0] ? 1 : 2}
+            isCenter={false}
+            isCommon={size[1] === size[0] || size[1] === size[2]}
+            index={resultList[1].id}
+          />
+          <ResultRankItem
+            rank={1}
+            isCenter
+            isCommon={size[0] === size[1]}
+            index={resultList[0].id}
+          />
+          <ResultRankItem
+            rank={size[2] === size[0] ? 1 : size[2] === size[1] ? 2 : 3}
+            isCenter={false}
+            isCommon={size[2] === size[0] || size[2] === size[1]}
+            index={resultList[2].id}
+          />
         </div>
       </div>
     </div>
