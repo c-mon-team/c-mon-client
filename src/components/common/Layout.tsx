@@ -18,7 +18,7 @@ function Layout(props: ILayout) {
 
 const StyledLayout = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   background-color: ${colors.gray5};
   & > div {
     width: 100%;
