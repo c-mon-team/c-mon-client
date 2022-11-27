@@ -1,6 +1,7 @@
 import Filter from 'components/result/Filter';
 import Header from 'components/result/Header';
 import Invite from 'components/result/Invite';
+import NoResultDetail from 'components/result/NoResultDetail';
 import OtherLinks from 'components/result/OtherLinks';
 import Reload from 'components/result/Reload';
 import ResultDetail from 'components/result/ResultDetail';
@@ -105,7 +106,9 @@ function Result() {
         questionIndex={questionIndex}
         isNoResult={isNoResult}
       />
-      {!isNoResult && (
+      {isNoResult ? (
+        <NoResultDetail />
+      ) : (
         <>
           <ResultGraph
             resultList={resultList}
