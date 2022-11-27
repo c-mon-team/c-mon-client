@@ -6,26 +6,28 @@ import Reload from 'components/result/Reload';
 import ResultDetail from 'components/result/ResultDetail';
 import ResultGraph from 'components/result/ResultGraph';
 import ResultRank from 'components/result/ResultRank';
+import memberListDummy from 'data/memberListDummy';
 import resultDesc from 'data/resultDesc';
 import resultDummy from 'data/resultDummy';
 import { getGroup, getResult } from 'libs/result';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+
+import { groupMemberList as groupMemberListStore } from '../../recoil/GlobalStore';
 
 function Result() {
   const [search] = useSearchParams();
   const code = search.get('code') || '';
 
+  const setGroupMemberList = useSetRecoilState(groupMemberListStore);
+
   const [group, setGroup] = useState({
     id: 1,
     name: 'TEST',
     memberCount: 3,
-    memberList: [
-      { id: 1, name: 'USER1' },
-      { id: 2, name: 'USER2' },
-      { id: 3, name: 'USER3' },
-    ],
+    memberList: memberListDummy,
   });
   const [resultList, setResultList] = useState(
     resultDummy.sort((a, b) => b.memberList.length - a.memberList.length).slice(0, 3),
@@ -50,6 +52,7 @@ function Result() {
         memberList: group.members,
         memberCount: group.members.length,
       });
+    group && setGroupMemberList(group.members);
     group && setFilteredMemberList(group.members);
     sortedResult &&
       setResultList(
