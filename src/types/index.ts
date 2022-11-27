@@ -16,6 +16,14 @@ export interface Group {
   members: Array<{ id: number; name: string }>;
 }
 
+export interface ApplyGroup {
+  id: number;
+  code: string;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export interface Response {
   status: number;
   success: boolean;
@@ -31,4 +39,8 @@ export interface ResultResponse extends Response {
 
 export interface GroupResponse extends Response {
   data: Group;
+}
+
+export interface ApplyGroupResponse extends Response {
+  data: ApplyGroup;
 }
