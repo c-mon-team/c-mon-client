@@ -23,7 +23,7 @@ function Header(props: HeaderProps) {
 
   return (
     <>
-      <header className="flex justify-between items-center pl-26 pr-20 pt-53 pb-12">
+      <header className="flex justify-between items-center pl-26 pr-20 pt-23 pb-12">
         <button
           className="flex justify-center items-center text-body3 text-gray10 px-7 py-4 bg-gray3 rounded-5"
           onClick={() => setRetryToggle(true)}

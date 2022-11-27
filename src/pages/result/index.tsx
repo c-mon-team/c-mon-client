@@ -14,7 +14,6 @@ import { getGroup, getResult } from 'libs/result';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
 
 import { groupMemberList as groupMemberListStore } from '../../recoil/GlobalStore';
 
@@ -93,7 +92,7 @@ function Result() {
   );
 
   return (
-    <StyledRoot>
+    <section>
       <Header
         filteredMemberCount={filteredMemberList.length}
         memberCount={group.memberCount}
@@ -128,12 +127,8 @@ function Result() {
           filteredMemberList={filteredMemberList}
         />
       )}
-    </StyledRoot>
+    </section>
   );
 }
-
-const StyledRoot = styled.section`
-  padding-bottom: 6.3rem;
-`;
 
 export default Result;
