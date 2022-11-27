@@ -5,7 +5,7 @@ import Reload from 'components/result/Reload';
 import ResultDetail from 'components/result/ResultDetail';
 import ResultGraph from 'components/result/ResultGraph';
 import ResultRank from 'components/result/ResultRank';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 function Result() {
@@ -37,9 +37,11 @@ function Result() {
     .slice(0, 3);
   const memberCount = 4;
 
+  const [filteredMemberCount, setFilteredMemberCount] = useState(4);
+
   return (
     <StyledRoot>
-      <Header />
+      <Header filteredMemberCount={filteredMemberCount} memberCount={memberCount} />
       <ResultRank groupName={groupName} resultDesc={resultDesc} resultList={resultList} />
       <ResultGraph resultList={resultList} memberCount={memberCount} />
       <ResultDetail />
