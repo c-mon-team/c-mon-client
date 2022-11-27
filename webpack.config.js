@@ -28,6 +28,7 @@ module.exports = () => ({
       types: path.resolve(__dirname, 'src/types'),
       components: path.resolve(__dirname, 'src/components'),
       configs: path.resolve(__dirname, 'src/configs'),
+      data: path.resolve(__dirname, 'src/data'),
       hooks: path.resolve(__dirname, 'src/hooks'),
       libs: path.resolve(__dirname, 'src/libs'),
       pages: path.resolve(__dirname, 'src/pages'),
@@ -90,9 +91,7 @@ module.exports = () => ({
       process: 'process/browser',
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: 'public/assets', to: 'assets' },
-      ],
+      patterns: [{ from: 'public/assets', to: 'assets' }],
     }),
     new webpack.HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin(),

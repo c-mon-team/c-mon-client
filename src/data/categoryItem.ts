@@ -1,4 +1,4 @@
-const rankItem = [
+const categoryItem = [
   { title: '여행', url: 'assets/icons/ic_travel.svg' },
   { title: '영화/드라마', url: 'assets/icons/ic_movie.svg' },
   { title: '반려 동물', url: 'assets/icons/ic_pet.svg' },
@@ -13,4 +13,4 @@ const rankItem = [
   { title: 'IT/재태크', url: 'assets/icons/ic_it.svg' },
 ];
 
-export default rankItem;
+export default categoryItem;
