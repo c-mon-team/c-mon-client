@@ -6,6 +6,7 @@ import Reload from 'components/result/Reload';
 import ResultDetail from 'components/result/ResultDetail';
 import ResultGraph from 'components/result/ResultGraph';
 import ResultRank from 'components/result/ResultRank';
+import resultDesc from 'data/resultDesc';
 import resultDummy from 'data/resultDummy';
 import { getGroup, getResult } from 'libs/result';
 import React, { useEffect, useState } from 'react';
@@ -29,11 +30,12 @@ function Result() {
   const [resultList, setResultList] = useState(
     resultDummy.sort((a, b) => b.memberList.length - a.memberList.length).slice(0, 3),
   );
-  const [resultDesc, setResultDesc] = useState(
+  const [resultDescText, setResultDescText] = useState(
     '떠나요, 다함께~ 제주도 푸른 밤!\n다음 약속은 여행이야',
   );
   const [filteredMemberList, setFilteredMemberList] = useState(group.memberList);
   const [filterToggle, setFilterToggle] = useState(false);
+  const [isNoResult, setIsNoResult] = useState(false);
 
   const getData = async () => {
     const group = await getGroup(code);
@@ -53,12 +55,17 @@ function Result() {
       setResultList(
         sortedResult.sort((a, b) => b.memberList.length - a.memberList.length).slice(0, 3),
       );
-    sortedResult && setResultDesc(resultDesc[sortedResult[0].id - 1]);
   };
 
   useEffect(() => {
     code && getData();
   }, [code]);
+
+  useEffect(() => {
+    const isNoResult = resultList[0].memberList.length === 1 && group.memberCount > 1;
+    setIsNoResult(isNoResult);
+    setResultDescText(isNoResult ? resultDesc[12].desc : resultDesc[resultList[0].id - 1].desc);
+  }, [resultList, group.memberCount]);
 
   const handleFilterToggle = () => {
     setFilterToggle(!filterToggle);
@@ -74,7 +81,6 @@ function Result() {
       setResultList(
         sortedResult.sort((a, b) => b.memberList.length - a.memberList.length).slice(0, 3),
       );
-    sortedResult && setResultDesc(resultDesc[sortedResult[0].id - 1]);
   };
 
   const resultIndex = resultList.map((result) => result.id);
@@ -91,16 +97,21 @@ function Result() {
       />
       <ResultRank
         groupName={group.name}
-        resultDesc={resultDesc}
+        resultDesc={resultDescText}
         resultList={resultList}
         questionIndex={questionIndex}
+        isNoResult={isNoResult}
       />
-      <ResultGraph
-        resultList={resultList}
-        memberCount={group.memberCount}
-        questionIndex={questionIndex}
-      />
-      <ResultDetail handleFilterToggle={handleFilterToggle} />
+      {!isNoResult && (
+        <>
+          <ResultGraph
+            resultList={resultList}
+            memberCount={group.memberCount}
+            questionIndex={questionIndex}
+          />
+          <ResultDetail handleFilterToggle={handleFilterToggle} />
+        </>
+      )}
       <Invite />
       <Reload getData={() => code && getData()} />
       <OtherLinks />

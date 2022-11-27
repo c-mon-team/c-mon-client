@@ -8,9 +8,9 @@ function OtherLinks() {
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(window.location.origin);
-      message.success('링크가 복사되었어요');
+      message.success('링크 복사가 완료되었습니다');
     } catch (error) {
-      message.error('복사에 실패했어요');
+      message.error('링크 복사에 실패했습니다');
     }
   };
 

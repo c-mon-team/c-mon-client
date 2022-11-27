@@ -14,6 +14,7 @@ module.exports = {
       borderRadius: px0_20,
       backgroundImage: {
         result: "url('public/assets/images/img_result_bg.svg')",
+        noResult: "url('public/assets/images/img_no_result_bg.svg')",
       },
       flex: {
         2: '2 2 auto',

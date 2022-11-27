@@ -11,6 +11,7 @@ const resultDesc = [
   { title: '패션/뷰티', desc: '떠나요, 다함께~ 제주도 푸른 밤!\n다음 약속은 여행이야' },
   { title: '대학생활', desc: '떠나요, 다함께~ 제주도 푸른 밤!\n다음 약속은 여행이야' },
   { title: 'IT/재태크', desc: '떠나요, 다함께~ 제주도 푸른 밤!\n다음 약속은 여행이야' },
+  { title: '', desc: '앗, 똑같이 좋아하는게 없어요\n모든 사람이 다 다른 선택을 했어요' },
 ];
 
 export default resultDesc;
