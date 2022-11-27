@@ -1,4 +1,4 @@
-const API_URL = 'https://ec2-13-209-30-42.ap-northeast-2.compute.amazonaws.com';
+const API_URL = 'https://asia-northeast3-cmon-1287c.cloudfunctions.net/api';
 
 const config = {
   VERSION: '1.0.0',
