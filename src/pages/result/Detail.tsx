@@ -16,12 +16,12 @@ function Detail() {
 
   const groupMemberList = useRecoilValue(groupMemberListStore);
   const [selected, setSelected] = useState(groupMemberList[0].name);
-  const [categoryList, setCategoryList] = useState<Category[]>([]);
-  const [currentCategory, setCurrentCategory] = useState<Category>(categoryDummy);
+  const [categoryList, setCategoryList] = useState<Category[]>(categoryDummy);
+  const [currentCategory, setCurrentCategory] = useState<Category>(categoryDummy[0]);
 
   const handleSelected = (name: string) => {
     setSelected(name);
-    setCurrentCategory(categoryList.filter((item) => item.name === selected)[0]);
+    setCurrentCategory(categoryList.filter((item) => item.name === name)[0]);
   };
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function Detail() {
   }, [code]);
 
   return (
-    <div>
+    <section className="w-full h-[100vh]">
       <DetailHeader />
       <MemberListNav
         groupMemberList={groupMemberList}
@@ -42,7 +42,7 @@ function Detail() {
         handleSelected={handleSelected}
       />
       <CategoryDetail category={currentCategory} />
-    </div>
+    </section>
   );
 }
 

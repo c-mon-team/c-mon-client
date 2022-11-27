@@ -5,7 +5,7 @@ function DetailHeader() {
   const navigate = useNavigate();
 
   return (
-    <div className="pt-50">
+    <div className="pt-20">
       <div className="flex justify-between items-center px-8">
         <button onClick={() => navigate(-1)}>
           <img src="/assets/icons/ic_close.svg" alt="close" />
