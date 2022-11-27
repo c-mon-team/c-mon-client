@@ -16,8 +16,8 @@ function Detail() {
 
   const groupMemberList = useRecoilValue(groupMemberListStore);
   const [selected, setSelected] = useState(groupMemberList[0].name);
-  const [categoryList, setCategoryList] = useState<Category[]>([]);
-  const [currentCategory, setCurrentCategory] = useState<Category>(categoryDummy);
+  const [categoryList, setCategoryList] = useState<Category[]>(categoryDummy);
+  const [currentCategory, setCurrentCategory] = useState<Category>(categoryDummy[0]);
 
   const handleSelected = (name: string) => {
     setSelected(name);
