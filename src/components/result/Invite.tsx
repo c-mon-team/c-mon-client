@@ -1,6 +1,18 @@
+import { message } from 'antd';
 import React from 'react';
 
 function Invite() {
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        window.location.origin + '/join' + window.location.search,
+      );
+      message.success('링크가 복사되었어요');
+    } catch (error) {
+      message.error('복사에 실패했어요');
+    }
+  };
+
   return (
     <div className="py-40 px-20">
       <h2 className="text-title2 mb-18">이 모임에 친구 초대하기</h2>
@@ -11,7 +23,10 @@ function Invite() {
           <br />
           공유하기
         </button>
-        <button className="flex-1 flex justify-center items-center text-body2 text-gray10 h-80 bg-gray3 rounded-20">
+        <button
+          onClick={copyLink}
+          className="flex-1 flex justify-center items-center text-body2 text-gray10 h-80 bg-gray3 rounded-20"
+        >
           <img className="mr-10" src="/assets/icons/ic_link.svg" alt="link" />
           공유링크
           <br />

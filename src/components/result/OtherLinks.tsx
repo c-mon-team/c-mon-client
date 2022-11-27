@@ -1,9 +1,25 @@
+import { message } from 'antd';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function OtherLinks() {
+  const navigate = useNavigate();
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.origin);
+      message.success('링크가 복사되었어요');
+    } catch (error) {
+      message.error('복사에 실패했어요');
+    }
+  };
+
   return (
     <div className="py-40 px-20 flex gap-15">
-      <button className="flex-1 h-170 rounded-20 bg-gray1 p-20">
+      <button
+        onClick={() => navigate('/', { replace: true })}
+        className="flex-1 h-170 rounded-20 bg-gray1 p-20"
+      >
         <p className="text-title4 mb-24 text-left">
           다른 모임의
           <br />
@@ -17,7 +33,7 @@ function OtherLinks() {
           테스트 만들기 &gt;
         </p>
       </button>
-      <button className="flex-1 h-170 rounded-20 bg-gray1 p-20">
+      <button onClick={copyLink} className="flex-1 h-170 rounded-20 bg-gray1 p-20">
         <p className="text-title4 mb-24 text-left">
           재밌었다면,
           <br />

@@ -1,6 +1,6 @@
+import categoryItem from 'data/categoryItem';
 import React, { useState } from 'react';
 import { Result } from 'types/index';
-import rankItem from 'utils/rankItem';
 
 import ResultGraphItem from './ResultGraphItem';
 
@@ -31,7 +31,7 @@ function ResultGraph(props: ResultGraphProps) {
           <ResultGraphItem
             key={result.id}
             id={result.id}
-            title={rankItem[result.id - 1].title}
+            title={categoryItem[result.id - 1].title}
             percent={Math.round((result.memberList.length / memberCount) * 100)}
             isChecked={result.id === checked}
             onClickGraph={onClickGraph}
@@ -40,7 +40,8 @@ function ResultGraph(props: ResultGraphProps) {
       </div>
       <div className="w-20 h-1 bg-gray5 mt-38 mb-5 mx-auto" />
       <h4 className="text-body1 text-gray10 text-center">
-        <span className="text-title4 text-blue">{rankItem[checked - 1].title}</span>에 관심있는 사람
+        <span className="text-title4 text-blue">{categoryItem[checked - 1].title}</span>에 관심있는
+        사람
       </h4>
       <div className="flex flex-wrap mt-30 gap-10">
         {resultList
