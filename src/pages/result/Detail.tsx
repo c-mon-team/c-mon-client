@@ -34,7 +34,7 @@ function Detail() {
   }, [code]);
 
   return (
-    <div>
+    <div className="w-full h-[100vh]">
       <DetailHeader />
       <MemberListNav
         groupMemberList={groupMemberList}
