@@ -1,5 +1,13 @@
 import { AxiosResponse } from 'axios';
-import { Group, GroupResponse, Response, Result, ResultResponse } from 'types/index';
+import {
+  Category,
+  CategoryResponse,
+  Group,
+  GroupResponse,
+  Response,
+  Result,
+  ResultResponse,
+} from 'types/index';
 
 import { client } from './client';
 
@@ -19,6 +27,17 @@ export const getResult = async (code: string, id: number[]): Promise<Result[] | 
       `/group/${code}/choice/member?id=${id.join(',')}`,
     );
     return data.data.categoryList;
+  } catch (e) {
+    return null;
+  }
+};
+
+export const getCategoryList = async (code: string): Promise<Category[] | null> => {
+  try {
+    const { data }: AxiosResponse<CategoryResponse> = await client.get(
+      `/group/${code}/choice/member`,
+    );
+    return data.data.memberList;
   } catch (e) {
     return null;
   }
