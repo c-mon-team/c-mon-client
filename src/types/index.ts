@@ -1,7 +1,6 @@
 export interface User {
   id: number;
   name: string;
-  groupId: number;
 }
 
 export interface Result {
@@ -19,6 +18,14 @@ export interface Group {
   groupId: number;
   groupName: string;
   members: GroupMember[];
+}
+
+export interface ApplyGroup {
+  id: number;
+  code: string;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface CategoryItem {
@@ -51,4 +58,26 @@ export interface GroupResponse extends Response {
 
 export interface CategoryResponse extends Response {
   data: { memberList: Category[] };
+}
+
+export interface ApplyGroupResponse extends Response {
+  data: ApplyGroup;
+}
+
+export interface SubCategoryData {
+  subCategoryId: number;
+  subCategoryName: string;
+}
+export interface PostSubCategoryResponse extends Response {
+  data: SubCategoryData;
+}
+
+export interface UserCategory extends User {
+  createdAt: Date;
+  updatedAt: Date;
+  groupId: number;
+}
+
+export interface PostTestResponse extends Response {
+  data: UserCategory;
 }

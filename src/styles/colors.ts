@@ -6,7 +6,7 @@ const colors = {
   nl,
 
   black: '#000000',
-  gray10: '#3D3D3D',
+  gray10: '#464951',
   gray9: '#6F6F6F',
   gray8: '#888888',
   gray7: '#AAAAAA',
