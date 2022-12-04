@@ -4,10 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { ESBuildMinifyPlugin } = require('esbuild-loader');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-module.exports = () => ({
+module.exports = (env) => ({
   mode: isDevelopment ? 'development' : 'production',
   devtool: 'eval',
   devtool: isDevelopment ? 'eval-cheap-module-source-map' : false,
@@ -95,6 +96,7 @@ module.exports = () => ({
     }),
     new webpack.HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin(),
+    new Dotenv(),
   ],
   optimization: {
     minimize: !isDevelopment,
