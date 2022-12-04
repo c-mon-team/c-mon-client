@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 function TestMain() {
   const { state } = useLocation() as { state: string[] };
-  const [selectList, setSelectList] = useState<string[]>(state);
+  const [selectList, setSelectList] = useState<string[]>(state || []);
   const [isClose, setIsClose] = useState(false);
   const navigate = useNavigate();
   const toggle = () => setIsClose(!isClose);

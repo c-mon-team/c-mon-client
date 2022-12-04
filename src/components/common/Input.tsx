@@ -5,12 +5,17 @@ interface InputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleReset: () => void;
   maxlength: number;
+  isError: boolean;
+  placeholder: string;
 }
 
 function Input(props: InputProps) {
-  const { value, onChange, handleReset, maxlength } = props;
+  const { value, onChange, handleReset, maxlength, isError, placeholder } = props;
 
   const isTyping = (value: string) => {
+    if (isError) {
+      return 'bg-white border-red';
+    }
     if (value.length !== 0) {
       return 'bg-blue2 border-blue5 ';
     }
@@ -22,7 +27,7 @@ function Input(props: InputProps) {
       className={`flex w-full h-48 rounded-16 border border-solid pr-10 pl-40 ${isTyping(value)}`}
     >
       <input
-        placeholder="ex) 김커몬"
+        placeholder={placeholder}
         className={'text-body1 outline-0 text-center w-full h-full rounded-16 bg-transparent'}
         onChange={onChange}
         value={value}
