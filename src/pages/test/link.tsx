@@ -2,14 +2,67 @@ import ToastMessage from 'components/common/ToastMessage';
 import LINK_INFO from 'data/linkItem';
 import TOAST_MESSAGE from 'data/toastMessage';
 import useCopyClipBoard from 'hooks/useCopyLink';
+import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
+
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
 
 function TestLink() {
   const { isCopy, setIsCopy, onCopy } = useCopyClipBoard();
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const code = search.get('code') || '';
+
+  useEffect(() => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+      initKakao(kakao);
+      createKakaoShareBtn();
+    }
+  }, []);
+
+  const initKakao = (kakao: any) => {
+    if (!kakao.isInitialized()) {
+      kakao.init(process.env.KAKAO_API_KEY);
+    }
+  };
+
+  const createKakaoShareBtn = () => {
+    if (window.Kakao) {
+      window.Kakao.Link.createDefaultButton({
+        objectType: 'feed',
+        container: '#kakao-share-btn',
+        content: {
+          title: '커몬 :: 우리 모임 공통 관심사 테스트',
+          description: '겹치는 관심사를 알려줘 서로를 더 잘 알아갈 수 있어요!',
+          imageUrl: 'https://ifh.cc/g/XG37ZY.png',
+          link: {
+            mobileWebUrl: 'https://c-mon.xyz',
+            webUrl: 'https://c-mon.xyz',
+          },
+        },
+        social: {
+          likeCount: 999,
+          commentCount: 999,
+          sharedCount: 999,
+        },
+        buttons: [
+          {
+            title: '웹으로 보기',
+            link: {
+              mobileWebUrl: window.location.href,
+              webUrl: window.location.href,
+            },
+          },
+        ],
+      });
+    }
+  };
 
   const copyLink = async () =>
     await onCopy(`${window.location.origin}/test${window.location.search}`);
@@ -32,6 +85,7 @@ function TestLink() {
         <div className="flex gap-20">
           {Object.keys(LINK_INFO).map((key) => (
             <button
+              id={key === 'KAKAO' ? 'kakao-share-btn' : 'link'}
               key={key}
               className="flex flex-col justify-center w-124 h-140 items-center bg-gray3 rounded-20 gap-10"
               onClick={() => handleShare(key)}
