@@ -7,7 +7,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Group } from 'types/index';
 
-const TEST_MEMBER = ['전희선', '써니', '아놔', '크킄', '재밌다', '사실', '안재밌음옹뇽'];
 function Test() {
   const navigate = useNavigate();
   const [search] = useSearchParams();
@@ -22,10 +21,9 @@ function Test() {
   };
 
   const duplicateMember = (name: string) => {
-    //*여기 바꿔야됨
-    // const members = groupInfo && Array.from(groupInfo?.members, (member) => member.name);
+    const members = groupInfo && Array.from(groupInfo?.members, (member) => member.name);
 
-    if (TEST_MEMBER.includes(name)) {
+    if (members?.includes(name)) {
       return true;
     }
     return false;
