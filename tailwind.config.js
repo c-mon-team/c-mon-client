@@ -26,6 +26,9 @@ module.exports = {
         5: '5 5 auto',
         6: '6 6 auto',
       },
+      borderWidth: {
+        DEFAULT: '1px',
+      },
       fontSize: {
         title2: ['20px', { lineHeight: '150%', fontWeight: '600', letterSpacing: '-1%' }],
         title1: ['24px', { lineHeight: '150%', fontWeight: '600', letterSpacing: '-1%' }],

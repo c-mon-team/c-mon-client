@@ -9,10 +9,15 @@ export interface Result {
   memberList: string[];
 }
 
+export interface GroupMember {
+  id: number;
+  name: string;
+}
+
 export interface Group {
   groupId: number;
   groupName: string;
-  members: Array<{ id: number; name: string }>;
+  members: GroupMember[];
 }
 
 export interface ApplyGroup {
@@ -21,6 +26,17 @@ export interface ApplyGroup {
   name: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface CategoryItem {
+  id: number;
+  name: string;
+  subcategoryList: string[];
+}
+
+export interface Category extends GroupMember {
+  createdAt: string;
+  categoryList: CategoryItem[];
 }
 
 export interface Response {
@@ -38,6 +54,10 @@ export interface ResultResponse extends Response {
 
 export interface GroupResponse extends Response {
   data: Group;
+}
+
+export interface CategoryResponse extends Response {
+  data: { memberList: Category[] };
 }
 
 export interface ApplyGroupResponse extends Response {

@@ -25,7 +25,7 @@ function RetryToggle(props: RetryToggleProps) {
   return (
     <StyledRoot>
       <div className="bg-white w-290 h-186 flex flex-col justify-center items-center rounded-20">
-        <p className="text-body1 text-gray10 mb-23">
+        <p className="text-body1 text-gray10 mb-23 text-center">
           정말 다시하시겠어요?
           <br />내 테스트 결과가 사라져요!
         </p>
@@ -56,6 +56,7 @@ const StyledRoot = styled.div`
   background: ${({ theme }) => theme.nd(0.5)};
   width: 100%;
   height: 100%;
+  left: 0;
   top: 0;
   z-index: 10;
   & > div {

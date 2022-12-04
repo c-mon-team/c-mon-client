@@ -22,6 +22,14 @@ const GlobalStyle = createGlobalStyle`
   button:hover {
     cursor: pointer;
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 `;
 
 export default GlobalStyle;

@@ -6,6 +6,7 @@ import TestLink from 'pages/test/link';
 import TestMain from 'pages/test/main';
 import ApplyName from 'pages/test/name';
 import TestSub from 'pages/test/sub';
+import ResultDetail from 'pages/result/Detail';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/test/name" element={<ApplyName />} />
         <Route path="/test/link" element={<TestLink />} />
         <Route path="/test/main" element={<TestMain />} />
+        <Route path="/result/detail" element={<ResultDetail />} />
       </Routes>
     </BrowserRouter>
   );
