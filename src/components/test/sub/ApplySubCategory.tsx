@@ -43,7 +43,7 @@ function ApplySubCategory(props: ApplySubCategoryProps) {
         </button>
         <h4 className="text-title3 text-center text-gray10 mt-50">직접입력하기</h4>
         <p className="text-gray7 text-body2 mt-4 mb-19">* 최대 6자</p>
-        <Input {...input} maxlength={6} />
+        <Input {...input} maxlength={6} placeholder="ex) 직접입력하기" isError={isDuplicate} />
         <button
           onClick={handleClick}
           className={`w-82 h-50 mt-20 text-center text-title4 text-white bg-blue rounded-15 ${

@@ -39,7 +39,7 @@ function ApplyName() {
               <span className="text-blue">이름</span>을 입력해주세요
             </h3>
             <p className="mb-20 text-body2 text-gray7">* 최대 6자</p>
-            <Input {...input} maxlength={6} />
+            <Input {...input} maxlength={6} placeholder="ex) 김커몬" isError={false} />
           </section>
           <div className="flex">
             <button

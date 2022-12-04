@@ -24,7 +24,7 @@ function Apply() {
           <span className="text-blue">모임명</span>을 입력해주세요
         </h3>
         <p className="mb-20 text-body2 text-gray7">* 최대 8자</p>
-        <Input {...input} maxlength={8} />
+        <Input {...input} maxlength={8} placeholder="ex) 커몬모임" isError={false} />
       </section>
       <button
         onClick={applyGroup}

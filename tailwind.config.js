@@ -79,6 +79,8 @@ module.exports = {
         yellow7: '#FFDE89',
         yellow5: '#FFEEC3',
         yellow3: '#FFFCEA',
+
+        red: '#FF9999',
       },
     },
   },
