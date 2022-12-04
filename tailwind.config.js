@@ -10,6 +10,9 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
+      fontFamily: {
+        mont: ['Montserrat'],
+      },
       spacing: px0_300,
       borderRadius: px0_20,
       backgroundImage: {
@@ -34,6 +37,7 @@ module.exports = {
         title3: ['18px', { lineHeight: '150%', fontWeight: '600', letterSpacing: '-1%' }],
         subtitle2: ['22px', { lineHeight: '150%', fontWeight: '500', letterSpacing: '0%' }],
         subtitle1: ['24px', { lineHeight: '150%', fontWeight: '500', letterSpacing: '0%' }],
+        steptext: ['14px', { lineHeight: '143%', fontWeight: '400', letterSpacing: '-1%' }],
       },
       colors: {
         black: '#000000',

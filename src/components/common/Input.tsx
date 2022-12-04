@@ -8,7 +8,7 @@ interface InputProps {
 }
 
 function Input(props: InputProps) {
-  const { value, onChange, handleReset } = props;
+  const { value, onChange, handleReset, maxlength } = props;
 
   const isTyping = (value: string) => {
     if (value.length !== 0) {
@@ -19,13 +19,14 @@ function Input(props: InputProps) {
 
   return (
     <div
-      className={`flex w-289 h-48 rounded-16 border border-solid pr-10 pl-40 ${isTyping(value)}`}
+      className={`flex w-full h-48 rounded-16 border border-solid pr-10 pl-40 ${isTyping(value)}`}
     >
       <input
         placeholder="ex) 김커몬"
         className={'text-body1 outline-0 text-center w-full h-full rounded-16 bg-transparent'}
         onChange={onChange}
         value={value}
+        maxLength={maxlength}
       />
       <button onClick={handleReset}>
         <img src="/assets/icons/ic_delete.svg" alt="delete" />

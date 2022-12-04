@@ -6,6 +6,5 @@ export const user = atom<User>({
   default: {
     id: 1,
     name: '',
-    groupId: 1,
   },
 });

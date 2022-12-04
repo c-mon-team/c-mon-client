@@ -1,7 +1,6 @@
 export interface User {
   id: number;
   name: string;
-  groupId: number;
 }
 
 export interface Result {
@@ -43,4 +42,22 @@ export interface GroupResponse extends Response {
 
 export interface ApplyGroupResponse extends Response {
   data: ApplyGroup;
+}
+
+export interface SubCategoryData {
+  subCategoryId: number;
+  subCategoryName: string;
+}
+export interface PostSubCategoryResponse extends Response {
+  data: SubCategoryData;
+}
+
+export interface UserCategory extends User {
+  createdAt: Date;
+  updatedAt: Date;
+  groupId: number;
+}
+
+export interface PostTestResponse extends Response {
+  data: UserCategory;
 }

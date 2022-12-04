@@ -3,20 +3,13 @@ import ApplyHeader from 'components/common/ApplyHeader';
 import Input from 'components/common/Input';
 import useInput from 'hooks/useInput';
 import { useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-
-interface LocationType {
-  state: {
-    groupId: string;
-  };
-}
 
 function ApplyName() {
   const [currentUser, setCurrentUser] = useRecoilState(user);
   const navigate = useNavigate();
-  const { state } = useLocation() as LocationType;
   const input = useInput();
   const { value } = input;
   const [isApply, setIsApply] = useState(false);
@@ -24,7 +17,7 @@ function ApplyName() {
   const code = search.get('code') || '';
 
   const handleClick = () => {
-    setCurrentUser({ ...currentUser, name: value, groupId: Number(state.groupId) });
+    setCurrentUser({ ...currentUser, name: value });
     setIsApply(true);
     setTimeout(() => {
       navigate(`/test/link?code=${code}`);
@@ -41,7 +34,7 @@ function ApplyName() {
       ) : (
         <>
           <ApplyHeader />
-          <section className="flex flex-col flex-1 justify-center items-center">
+          <section className="flex flex-col flex-1 justify-center items-center px-22">
             <h3 className="text-title3 mb-10">
               <span className="text-blue">이름</span>을 입력해주세요
             </h3>
