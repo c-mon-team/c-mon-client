@@ -49,7 +49,7 @@ function Header(props: HeaderProps) {
           onConfirm={async () => {
             setRetryToggle(false);
             await deleteMyTest(user.id);
-            navigate('/', { replace: true });
+            navigate('/test' + window.location.search, { replace: true });
           }}
         />
       )}

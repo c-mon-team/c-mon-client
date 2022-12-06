@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 interface FilterProps {
   handleFilterToggle: () => void;
   getFilteredData: (id: number[]) => void;
+  memberList: Array<{ id: number; name: string }>;
   filteredMemberList: Array<{ id: number; name: string }>;
 }
 interface StyledButtonProps {
@@ -15,12 +16,12 @@ interface StyledSubmitButtonProps {
 }
 
 function Filter(props: FilterProps) {
-  const { handleFilterToggle, getFilteredData, filteredMemberList } = props;
+  const { handleFilterToggle, getFilteredData, memberList, filteredMemberList } = props;
 
   const [search] = useSearchParams();
   const code = search.get('code') || '';
 
-  const [selected, setSelected] = useState<number[]>([]);
+  const [selected, setSelected] = useState<number[]>(filteredMemberList.map((member) => member.id));
 
   useEffect(() => {
     const body = document.querySelector('body');
@@ -44,8 +45,8 @@ function Filter(props: FilterProps) {
   };
 
   const handleAllSelected = () => {
-    if (selected.length < filteredMemberList.length) {
-      setSelected(filteredMemberList.map((member) => member.id));
+    if (selected.length < memberList.length) {
+      setSelected(memberList.map((member) => member.id));
     } else {
       setSelected([]);
     }
@@ -75,7 +76,7 @@ function Filter(props: FilterProps) {
           </p>
           <div />
           <div className="flex flex-wrap gap-10 mt-40">
-            {filteredMemberList.map((member) => (
+            {memberList.map((member) => (
               <StyledButton
                 isSelected={selected.includes(member.id)}
                 onClick={() => handleSelected(member.id)}
@@ -92,7 +93,7 @@ function Filter(props: FilterProps) {
             <img
               className="mr-5"
               src={`/assets/icons/ic_check_${
-                selected.length === filteredMemberList.length ? 'on' : 'off'
+                selected.length === memberList.length ? 'on' : 'off'
               }.svg`}
               alt="check"
             />
@@ -138,7 +139,7 @@ const StyledRoot = styled.div`
 const StyledButton = styled.button<StyledButtonProps>`
   width: 7.5rem;
   height: 4.5rem;
-  padding: 0 1.9rem;
+  padding: 0 1.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
