@@ -42,8 +42,8 @@ function TestLink() {
           description: '겹치는 관심사를 알려줘 서로를 더 잘 알아갈 수 있어요!',
           imageUrl: 'https://ifh.cc/g/XG37ZY.png',
           link: {
-            mobileWebUrl: `https://c-mon.xyz/test?code=${code}`,
-            webUrl: `https://c-mon.xyz/test?code=${code}`,
+            mobileWebUrl: 'https://c-mon.xyz',
+            webUrl: 'https://c-mon.xyz',
           },
         },
         social: {
@@ -55,8 +55,8 @@ function TestLink() {
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
+              mobileWebUrl: `https://c-mon.xyz/test?code=${code}`,
+              webUrl: `https://c-mon.xyz/test?code=${code}`,
             },
           },
         ],

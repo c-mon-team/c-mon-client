@@ -45,8 +45,8 @@ function Invite() {
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
+              mobileWebUrl: 'https://c-mon.xyz/test' + window.location.search,
+              webUrl: 'https://c-mon.xyz/test' + window.location.search,
             },
           },
         ],
