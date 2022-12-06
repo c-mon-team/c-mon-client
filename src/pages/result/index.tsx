@@ -42,8 +42,16 @@ function Result() {
   const getData = async () => {
     const group = await getGroup(code);
     const result = await getResult(code, [0]);
-    const sortedResult =
-      result && result.sort((a, b) => b.memberList.length - a.memberList.length).slice(0, 3);
+
+    const filteredResult = result
+      ? result.map((item) => {
+          const memberListSet = new Set(item.memberList);
+          return { ...item, memberList: [...memberListSet] };
+        })
+      : [];
+    const sortedResult = filteredResult
+      .sort((a, b) => b.memberList.length - a.memberList.length)
+      .slice(0, 3);
 
     group &&
       setGroup({
