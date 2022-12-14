@@ -1,11 +1,11 @@
-import { user } from '@recoil/GlobalStore';
+import { group, user } from '@recoil/GlobalStore';
 import ApplySubCategory from 'components/test/sub/ApplySubCategory';
 import Item from 'components/test/sub/Item';
 import categoryItem, { getValidParticle } from 'data/categoryItem';
 import { postTest } from 'libs/test';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
@@ -41,6 +41,7 @@ function TestSub() {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const [currentUser, setCurrentUser] = useRecoilState(user);
+  const currentGroup = useRecoilValue(group);
   const [search] = useSearchParams();
   const code = search.get('code') || '';
 
@@ -115,7 +116,7 @@ function TestSub() {
   const handleSubmitResult = async () => {
     const flattenedSelection = selectedItems.flat();
     const flattenedDirectInputs = directInputs.flat().filter((input) => input !== '');
-    const data = await postTest(code, currentUser.name, [
+    const data = await postTest(currentGroup.id, currentUser.name, [
       ...flattenedSelection,
       ...flattenedDirectInputs,
     ]);

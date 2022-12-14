@@ -1,8 +1,10 @@
+import { group } from '@recoil/GlobalStore';
 import ApplyHeader from 'components/common/ApplyHeader';
 import Input from 'components/common/Input';
 import useInput from 'hooks/useInput';
 import { postGroup } from 'libs/test';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 function Apply() {
@@ -10,10 +12,16 @@ function Apply() {
   const input = useInput();
   const { value } = input;
 
+  const setCurrentGroup = useSetRecoilState(group);
+
   const applyGroup = async () => {
     const data = await postGroup(value);
 
-    navigate(`/test/name?code=${data?.code}`);
+    if (data) {
+      const { id, code, name } = data;
+      setCurrentGroup({ id, code, name });
+      navigate(`/test/name?code=${code}`);
+    }
   };
 
   return (

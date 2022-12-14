@@ -37,13 +37,13 @@ export const postSubCategory = async (
 };
 
 export const postTest = async (
-  code: string,
+  groupId: number,
   userName: string,
   choice: string[],
 ): Promise<UserCategory | null> => {
   try {
     const { data }: AxiosResponse<PostTestResponse> = await client.post('/member', {
-      code,
+      groupId,
       userName,
       choice,
     });
