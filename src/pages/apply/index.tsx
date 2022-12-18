@@ -1,25 +1,19 @@
-import { group } from '@recoil/GlobalStore';
 import ApplyHeader from 'components/common/ApplyHeader';
 import Input from 'components/common/Input';
 import useInput from 'hooks/useInput';
 import { postGroup } from 'libs/test';
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 function Apply() {
   const navigate = useNavigate();
   const input = useInput();
   const { value } = input;
-
-  const setCurrentGroup = useSetRecoilState(group);
-
   const applyGroup = async () => {
     const data = await postGroup(value);
 
     if (data) {
-      const { id, code, name } = data;
-      setCurrentGroup({ id, code, name });
+      const { code } = data;
       navigate(`/test/name?code=${code}`);
     }
   };
