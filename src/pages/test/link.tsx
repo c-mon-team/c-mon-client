@@ -78,6 +78,7 @@ function TestLink() {
 
   return (
     <Styled.Root>
+      {isCopy && <ToastMessage message={TOAST_MESSAGE.LINK} />}
       <section className="flex flex-1 flex-col justify-center items-center">
         <h4 className="flex text-body1 text-gray10 whitespace-pre text-center mb-32">
           {'친구들에게 공유하고\n관심사를 체크해보세요'}
@@ -95,7 +96,6 @@ function TestLink() {
             </button>
           ))}
         </div>
-        {isCopy && <ToastMessage message={TOAST_MESSAGE.LINK} />}
       </section>
       <button
         onClick={() => navigate(`/test/main?code=${code}`)}
