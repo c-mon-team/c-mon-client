@@ -17,7 +17,7 @@ function OtherLinks() {
   return (
     <div className="py-40 px-20 flex gap-15">
       <button
-        onClick={() => navigate('/', { replace: true })}
+        onClick={() => navigate('/apply', { replace: true })}
         className="flex-1 h-170 rounded-20 bg-gray1 p-20"
       >
         <p className="text-title4 mb-24 text-left">

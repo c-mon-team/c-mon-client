@@ -7,7 +7,7 @@ interface ToastMessageProps {
 function ToastMessage({ message }: ToastMessageProps) {
   const getClassName = (message: string) => {
     if (message === TOAST_MESSAGE.LINK) {
-      return 'flex justify-start items-center absolute w-290 h-56 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray9 rounded-16';
+      return 'flex justify-start items-center absolute w-290 h-56 top-56 left-1/2 -translate-x-1/2 bg-gray9 rounded-16';
     }
     if (
       message === TOAST_MESSAGE.DUPLICATE_MEMBER ||

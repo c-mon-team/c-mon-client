@@ -45,8 +45,8 @@ function Invite() {
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
+              mobileWebUrl: 'https://c-mon.xyz/test' + window.location.search,
+              webUrl: 'https://c-mon.xyz/test' + window.location.search,
             },
           },
         ],
@@ -57,7 +57,7 @@ function Invite() {
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(
-        window.location.origin + '/join' + window.location.search,
+        window.location.origin + '/test' + window.location.search,
       );
       message.success('링크 복사가 완료되었습니다');
     } catch (error) {

@@ -34,9 +34,7 @@ export const getResult = async (code: string, id: number[]): Promise<Result[] | 
 
 export const getCategoryList = async (code: string): Promise<Category[] | null> => {
   try {
-    const { data }: AxiosResponse<CategoryResponse> = await client.get(
-      `/group/${code}/choice/member`,
-    );
+    const { data }: AxiosResponse<CategoryResponse> = await client.get(`/group/${code}/choice`);
     return data.data.memberList;
   } catch (e) {
     return null;

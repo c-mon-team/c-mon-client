@@ -96,7 +96,7 @@ module.exports = (env) => ({
     }),
     new webpack.HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin(),
-    new Dotenv(),
+    new Dotenv({ systemvars: true }),
   ],
   optimization: {
     minimize: !isDevelopment,

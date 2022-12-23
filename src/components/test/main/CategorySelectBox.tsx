@@ -11,7 +11,7 @@ function CategorySelectBox(props: CategorySelectBoxProps) {
   const { handleSelect, selectList } = props;
 
   return (
-    <div className="flex-1 grid grid-cols-2 place-items-center overflow-scroll">
+    <div className="flex-1 grid grid-cols-2 place-items-center overflow-y-scroll">
       {categoryItem.map((categoryItem) => (
         <CategoryCard
           key={categoryItem.title}

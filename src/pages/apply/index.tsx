@@ -9,11 +9,13 @@ function Apply() {
   const navigate = useNavigate();
   const input = useInput();
   const { value } = input;
-
   const applyGroup = async () => {
     const data = await postGroup(value);
 
-    navigate(`/test/name?code=${data?.code}`);
+    if (data) {
+      const { code } = data;
+      navigate(`/test/name?code=${code}`);
+    }
   };
 
   return (
